@@ -1,0 +1,79 @@
+#include "sys.h"
+#include "stm32f10x_exti.h"
+#include "delay.h"
+#include "usart.h"
+#include "led.c"
+#include "drv_Main.hpp"
+#include "drv_LED.hpp"
+#include "drv_LCD.hpp"
+#include "Commulink.hpp"
+#include "GUI.hpp"
+#include "GUI_Images.hpp"
+#include "drv_Timer.hpp"
+#include "drv_Beep.hpp"
+#include "drv_Key.hpp"
+#include "drv_ADC.hpp"
+#include "drv_MPU6050.hpp"
+
+u8 str[50];
+//三个方向的欧拉角
+extern float Pitch,Roll,Yaw;	  
+//温度变量
+int Temperature;
+//Z轴加速度计  
+float Acceleration_Z; 	
+//平衡倾角 平衡陀螺仪 转向陀螺仪
+float Angle_Balance,Gyro_Balance,Gyro_Turn;
+int num;
+float volt=0;//存储电压值的变量
+u16 n=0;
+
+RCC_ClocksTypeDef RCC_CLK;
+int main(void)
+{	
+	//系统时钟初始化
+	SystemInit();
+	//延时时钟初始化
+  delay_init();	       
+	//获取时钟总线
+	RCC_GetClocksFreq(&RCC_CLK);//Get chip frequencies	
+	//初始化设备驱动
+	init_drv_Main();
+	//初始化定时器TIM4
+	Timer_init(9999,7199);//  72m/10000/7200=1hz
+	//初始化屏幕为白色
+	LCD_Fill(0,0,LCD_W,LCD_H,WHITE);
+	//ADC1的初始化
+	init_drv_ADC();
+	//初始化MPU6050
+	MPU_Init();
+	//初始化uart1
+	uart_init(115200);
+	
+	u8 BAT[]="Battery voltage:";
+	u8 Rol[]={"Pit: 0.0"};
+	u8 Pit[]={"Rol: 0.0"};
+	u8 YAW[]={"Yaw: 0.0"};
+	LCD_ShowString(0,0,BAT,BLACK,WHITE,16,0);
+	LCD_ShowString(0,16,Rol,BLACK,WHITE,16,0);
+	LCD_ShowString(0,32,Pit,BLACK,WHITE,16,0);
+  LCD_ShowString(0,48,YAW,BLACK,WHITE,16,0);
+	volt=volt=Get_battery_volt();	
+	//进入主循环
+	while(1)
+	{			
+		//显示电压
+		LCD_ShowFloatNum1(128,0,volt,6,RED,WHITE ,16);
+		if(USART_RX_STA&0x8000)
+ { len=USART_RX_STA&0x3f; //得到此次接收到的数据长度
+printf("\r\n 您发送的消息为:\r\n\r\n");
+for(t=0;t<len;t++)
+{ USART_SendData(USART1, USART_RX_BUF[t]); //向串口 1 发送数据
+ while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);
+//等待发送结束
+}
+printf("\r\n\r\n"); //插入换行
+USART_RX_STA=0;
+}else
+	}
+}

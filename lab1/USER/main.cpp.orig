@@ -1,0 +1,37 @@
+#include "sys.h"
+#include "delay.h"
+#include "usart.h"
+#include "drv_Main.hpp"
+#include "drv_LED.hpp"
+#include "drv_LCD.hpp"
+#include "Commulink.hpp"
+#include "GUI.hpp"
+
+RCC_ClocksTypeDef RCC_CLK;
+
+int main(void)
+{	
+	//系统时钟初始化
+	SystemInit();
+	//延时时钟初始化
+delay_init();	
+	//打开SWD接口,关闭复用功能
+	JTAG_Set(SWD_ENABLE);        
+	//获取时钟总线
+	RCC_GetClocksFreq(&RCC_CLK);//Get chip frequencies	
+	//设置系统中断优先级分组4	
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4); 
+	//初始化设备驱动
+	init_drv_Main();
+	//初始化开始声音
+	sendLedSignal(LEDSignal_Start1);
+	
+	//进入主循环
+	while(1)
+	{
+		//状态指示
+		Commulink_Server();
+		//LED闪烁
+		Led_Flash();
+	}
+}

@@ -1,0 +1,32 @@
+# 编译需要更改的地方
+
+1. 根据目标，在菜单的"option for target"图标下 device栏，更改目标芯片
+
+2. 在菜单的"option for target"图标下 C/C++栏，根据目标替换
+STM32F10X_LD
+STM32F10X_MD
+STM32F10X_HD
+
+3. 在左侧文件列表里替换startup文件
+startup_stm32f10x_ld.s
+startup_stm32f10x_md.s
+startup_stm32f10x_hd.s
+
+### 如何识别自己的STM32芯片是LD,MD还是HD:
+芯片名: f103c X c6
+X=4 = 16KB
+X=6 = 32KB
+X=8 = 64KB
+X=B = 128KB
+X=C = 256KB
+X=D = 384KB
+X=E = 512KB
+
+LD:16~32KB 4/6
+MD:64~128KB 8/B
+HD:256~512KB C/D/E
+
+常见芯片:
+ - STM32F103C6T6; X=6 则是LD
+ - STM32F103C8T6; X=8 则是MD
+ - STM32F103ZET6; X=E 则是HD

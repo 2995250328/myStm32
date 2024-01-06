@@ -1,0 +1,20 @@
+0BSD Licence
+
+Copyright (C) 2023 by 感为智能科技(济南)有限公司
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Copyright (c) 2023 感为智能科技(济南)有限公司。
+
+任何获得本软件副本及相关文档文件(下面简称为“软件”的个人都可以免费获得
+不受限制处置本软件的权限，包括不受限制地使用、复制、修改、合并、出版、
+分发、重新许可或者销售本软件的副本。
+本软件包装不负任何明示或默示之担保责任，包括但不限于就适售性以及特定目
+的的适用性为默示性担保。作者，无论任何条件、无论成因或任何责任主义、无
+论此责任为因合约关系、无过失责任主义或因非违约之侵权（包括过失或其他原
+因等）而起，对于任何因使用本软件包装所产生的任何直接性、间接性、偶发性
+、特殊性、惩罚性或任何结果的损害（包括但不限于替代商品或劳务之购用、使
+用损失、资料损失、利益损失、业务中断等等），不负任何责任，即在该种使用
+已获事前告知可能会造成此类损害的情形下亦然。
